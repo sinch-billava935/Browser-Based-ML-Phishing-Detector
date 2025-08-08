@@ -1,0 +1,117 @@
+'use client'
+import Image from 'next/image'
+import React from 'react'
+import { useRef, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import logo from '../app/logo1.png'
+import { LuMenu } from 'react-icons/lu'
+import { motion } from 'framer-motion'
+import { Turn as Hamburger } from 'hamburger-react'
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleClickContribute = () => {
+    let scrollValue
+    if (window.innerWidth > 800) {
+      scrollValue = 1800
+    } else if (window.innerWidth < 800) {
+      scrollValue = 2400
+    }
+    window.scrollTo({
+      top: scrollValue,
+      behavior: 'smooth',
+    })
+    setIsOpen(false)
+  }
+  const handleClickAbout = () => {
+    window.scrollTo({
+      top: 600,
+      behavior: 'smooth',
+    })
+    setIsOpen(false)
+  }
+  const handleClickContact = () => {
+    let scrollValue
+    if (window.innerWidth > 800) {
+      scrollValue = 2200
+    } else if (window.innerWidth < 800) {
+      scrollValue = 2800
+    }
+    window.scrollTo({
+      top: scrollValue,
+      behavior: 'smooth',
+    })
+    setIsOpen(false)
+  }
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
+
+  return (
+    <header className="header fixed left-0 w-full top-0 backdrop-filter backdrop-blur-md bg-opacity-50">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 py-5 lg:pl-0 sm:pl-5">
+        <div className="max-w-screen-xl flex items-center mx-auto lg:gap-60 sm:gap-40">
+          <span className="flex lg:text-2xl sm:text-4xl text-4xl font-semibold whitespace-nowrap dark:text-white lg:mr-10 sm:mr-0">
+            <Image
+              src={logo}
+              alt="logo"
+              className="h-12 w-14 lg:block sm:hidden hidden"
+            />
+            <Image
+              src={logo}
+              alt="logo"
+              className="h-12 w-12 ml-10 mt-1 sm:block lg:hidden block"
+            />
+            <h1 className="mt-1">Phishing</h1>
+            <h1 className="text-green-600 mt-1">Detector</h1>
+          </span>
+          <div className="lg:hidden md:hidden sm:block block">
+            <div className="menu absolute top-0 right-0 h-full bg-white z-50">
+              <div
+                className={`menu-icon absolute top-5 right-7 ${
+                  isOpen ? 'text-green-600' : 'text-black'
+                }`}
+              >
+                <Hamburger
+                  toggled={isOpen}
+                  size={32}
+                  toggle={setIsOpen}
+                  rounded
+                />
+              </div>
+
+              {isOpen && (
+                <motion.div
+                  className="menu-items text-center absolute text-3xl top-14 right-0 p-4 bg-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isOpen ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  
+                  <Button
+                    className="text-white text-xl py-6 px-6 mb-6"
+                    variant="default"
+                    onClick={() => handleClickContribute()}
+                  >
+                    Contribute
+                  </Button>
+                </motion.div>
+              )}
+            </div>
+          </div>
+
+          <div
+            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 pr-4"
+            id="navbar-cta"
+          >
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+  )
+}
+
+export default Navbar
