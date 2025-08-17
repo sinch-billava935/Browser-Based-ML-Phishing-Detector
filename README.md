@@ -48,13 +48,7 @@ npm run build
 npm start
 ```
 
-#### For the Browser Extension
 
-The browser extension has a separate setup process. Navigate to the extension directory and refer to the [README](extension/README.md) file for detailed instructions.
-
-## Contributing
-
-Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or clone the repository and submit a pull request on GitHub.
 
 For detailed guidelines on how to contribute, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file
 
